@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Muli&display=swap'); /* imported external font */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Muli', sans-serif;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    display: flex; /* Without this all the child div elements was rendering below each other */
+    width: 90vw; /* Set width of the container to 90 viewing width so that there will be a space at left and right side */
+}
+
+.panel {
+    background-size: cover; /* With this property we can see the full image */
+    background-position: center; /* sets the starting position of a background image. By default, a background-image is placed at the top-left corner of an element, and repeated both vertically and horizontally */
+    background-repeat: no-repeat; /* this will block the repetation of image*/
+    height: 80vh;
+    border-radius: 50px;
+    flex: 0.5; /* evenly grow the divs */
+    color: #ffffff;
+    cursor: pointer;
+    margin: 10px;
+    position: relative; /* we need to position the child h3 absolute so here we provided position as relative */
+    transition: flex 0.7s ease-in; /* it allows change property values smoothly first argument is property */
+}
+
+.panel h3 {
+    font-size: 24px;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    margin: 0;
+    opacity: 0;
+}
+
+.panel.active { /* if both class are present for the element we write this way but if class is decendent of another class then we need to write with the space */
+    flex: 5;
+}
+
+.panel.active h3 {
+    opacity: 1;
+    transition: opacity 0.3s ease-in 0.4s; /* Added some delay to show h3, last argument is delay time */
+}
+
+@media (max-width: 480px) { /* Added media query to target the smaller devices like below 480px width */
+    .container {
+        width: 100vw;
+    }
+    .panel:nth-of-type(4),.panel:nth-of-type(5) { /* with pseudo classes we targeted 4th and 5th element */
+        display: none;
+    }
+}
