@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Muli&display=swap');
+
+:root { /* here we can set the commonly used property values*/
+    --line-border-fill: #3498db;
+    --line-border-empty: #e2e2e2;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f6f7fb;
+    font-family: 'Muli', sans-serif;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+}
+.container {
+    text-align: center; /* center the content*/
+}
+.progress-container {
+    display: flex; /* with this divs align next to each other */
+    justify-content: space-between; /* evenly distributes the space between divs */
+    width: 350px;
+    max-width: 100%; /* defines the maximum width */
+    position: relative; /* so we can define absolute positions for childrens */
+    margin-bottom: 30px;
+}
+
+.progress-container::before { /* with this we can draw inintial grey color line, it takes same properties as .progress with different background color */
+    content: "";
+    background-color: #e2e2e2;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 4px;
+    width: 100%;
+    z-index: -1;
+    transition: 0.4s ease;
+}
+
+.progress {
+    background-color: var(--line-border-fill);
+    position: absolute; /* with this we can position line below the circles */
+    left: 0; /* we don't need any position from left */
+    top: 50%; /* with this we centered the line vertically */
+    transform: translateY(-50%); /* to center the line exact vertically we need to minus the half of height*/
+    height: 4px;
+    width: 0%;
+    z-index: -1; /* with this we put line behind the circles */
+    transition: 0.4s ease; /* for smooth effect*/
+}
+
+.circle {
+    background-color: #f6f7fb;
+    color: #999;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    border: 2px solid #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s ease;
+}
+
+.circle.active {
+    border-color: var(--line-border-fill)
+}
+
+.button {
+    margin: 5px;
+    color: #fff;
+    background-color: var(--line-border-fill);
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 8px 30px;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.button:active { /* to give click effect */
+    transform: scale(0.98);
+}
+
+.button:focus {
+    outline: 0;
+}
+
+.button:disabled {
+    background-color: var(--line-border-empty);
+    cursor: not-allowed;
+    transform: none;
+}
